@@ -4,6 +4,7 @@ import { ListingDetail } from './pages/ListingDetail';
 import { HostProfile } from './pages/HostProfile';
 import { Bookings } from './pages/Bookings';
 import { BecomeHost } from './pages/BecomeHost';
+import { GuestProfile } from './pages/GuestProfile';
 import { Header } from './components/Header';
 import { Toaster } from './components/ui/sonner';
 
@@ -66,6 +67,10 @@ export const router = createBrowserRouter([
   {
     path: '/become-host',
     element: <Layout><BecomeHost /></Layout>,
+  },
+  {
+    path: '/profile',
+    element: <Layout><GuestProfile /></Layout>,
   },
   {
     path: '*',

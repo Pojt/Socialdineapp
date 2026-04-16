@@ -98,9 +98,11 @@ export function Header({
                 <Calendar className="w-5 h-5" />
               </Button>
             </Link>
-            <Button variant="ghost" size="icon" className="text-muted-foreground hover:text-primary">
-              <User className="w-5 h-5" />
-            </Button>
+            <Link to="/profile">
+              <Button variant="ghost" size="icon" className="text-muted-foreground hover:text-primary">
+                <User className="w-5 h-5" />
+              </Button>
+            </Link>
           </div>
         </div>
       </div>

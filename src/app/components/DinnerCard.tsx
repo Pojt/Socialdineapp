@@ -1,5 +1,6 @@
 import { Link } from 'react-router';
 import { DinnerExperience } from '../data/mockData';
+import { CheckCircle } from 'lucide-react';
 
 interface DinnerCardProps {
   experience: DinnerExperience;
@@ -16,10 +17,15 @@ export function DinnerCard({ experience }: DinnerCardProps) {
             alt={experience.host.name}
             className="w-12 h-12 rounded-full object-cover ring-2 ring-border flex-shrink-0"
           />
-          <div className="min-w-0">
-            <h3 className="serif text-xl text-foreground group-hover:text-primary transition-colors leading-tight">
-              {experience.host.name}
-            </h3>
+          <div className="min-w-0 flex-1">
+            <div className="flex items-center gap-1.5">
+              <h3 className="serif text-xl text-foreground group-hover:text-primary transition-colors leading-tight">
+                {experience.host.name}
+              </h3>
+              {experience.host.verified && (
+                <CheckCircle className="w-4 h-4 text-primary flex-shrink-0" aria-label="Verified host" />
+              )}
+            </div>
             <p className="text-xs text-muted-foreground">{experience.host.city}</p>
           </div>
         </div>
@@ -27,13 +33,15 @@ export function DinnerCard({ experience }: DinnerCardProps) {
         {/* Interests */}
         <div className="flex flex-wrap gap-1.5">
           {experience.host.interests.slice(0, 3).map((interest) => (
-            <span
-              key={interest}
-              className="text-xs px-2 py-0.5 bg-secondary text-muted-foreground rounded-full"
-            >
+            <span key={interest} className="text-xs px-2 py-0.5 bg-secondary text-muted-foreground rounded-full">
               {interest}
             </span>
           ))}
+          {experience.soloFriendly && (
+            <span className="text-xs px-2 py-0.5 bg-primary/10 text-primary rounded-full">
+              solo-friendly
+            </span>
+          )}
         </div>
 
         {/* Food photo */}
@@ -43,7 +51,6 @@ export function DinnerCard({ experience }: DinnerCardProps) {
             alt={experience.dishDescription}
             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
           />
-          {/* Vibe tag */}
           <span className="absolute bottom-2 left-2 text-xs px-2 py-1 bg-background/80 backdrop-blur-sm text-foreground rounded-full">
             {experience.tableVibe}
           </span>
@@ -54,7 +61,7 @@ export function DinnerCard({ experience }: DinnerCardProps) {
           {experience.host.oneLiner}
         </p>
 
-        {/* Price and seats */}
+        {/* Footer */}
         <div className="flex items-center justify-between text-sm pt-2 border-t border-border/30">
           <span className="text-muted-foreground">
             {experience.seatsAvailable} {experience.seatsAvailable === 1 ? 'seat' : 'seats'} left
