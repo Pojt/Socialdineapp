@@ -9,47 +9,58 @@ export function DinnerCard({ experience }: DinnerCardProps) {
   return (
     <Link to={`/listing/${experience.id}`} className="block group">
       <div className="space-y-3">
-        {/* Host Photo - Leading element */}
-        <div className="flex items-center gap-3 mb-4">
-          <img 
-            src={experience.host.avatar} 
+        {/* Host — leading element */}
+        <div className="flex items-center gap-3 mb-1">
+          <img
+            src={experience.host.avatar}
             alt={experience.host.name}
-            className="w-14 h-14 rounded-full object-cover ring-2 ring-border"
+            className="w-12 h-12 rounded-full object-cover ring-2 ring-border flex-shrink-0"
           />
-          <div>
-            <h3 className="serif text-xl text-foreground group-hover:text-primary transition-colors">
+          <div className="min-w-0">
+            <h3 className="serif text-xl text-foreground group-hover:text-primary transition-colors leading-tight">
               {experience.host.name}
             </h3>
-            <p className="text-sm text-muted-foreground">{experience.host.city}</p>
+            <p className="text-xs text-muted-foreground">{experience.host.city}</p>
           </div>
         </div>
 
-        {/* Dish Photo */}
+        {/* Interests */}
+        <div className="flex flex-wrap gap-1.5">
+          {experience.host.interests.slice(0, 3).map((interest) => (
+            <span
+              key={interest}
+              className="text-xs px-2 py-0.5 bg-secondary text-muted-foreground rounded-full"
+            >
+              {interest}
+            </span>
+          ))}
+        </div>
+
+        {/* Food photo */}
         <div className="relative aspect-[4/3] overflow-hidden rounded-lg">
-          <img 
-            src={experience.image} 
+          <img
+            src={experience.image}
             alt={experience.dishDescription}
             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
           />
+          {/* Vibe tag */}
+          <span className="absolute bottom-2 left-2 text-xs px-2 py-1 bg-background/80 backdrop-blur-sm text-foreground rounded-full">
+            {experience.tableVibe}
+          </span>
         </div>
 
-        {/* One liner about host */}
+        {/* One-liner */}
         <p className="text-sm text-foreground leading-relaxed">
           {experience.host.oneLiner}
         </p>
 
-        {/* What they're cooking */}
-        <p className="text-sm text-muted-foreground">
-          {experience.dishDescription}
-        </p>
-
-        {/* Price and seats - subtle */}
+        {/* Price and seats */}
         <div className="flex items-center justify-between text-sm pt-2 border-t border-border/30">
           <span className="text-muted-foreground">
-            {experience.seatsAvailable} {experience.seatsAvailable === 1 ? 'seat' : 'seats'}
+            {experience.seatsAvailable} {experience.seatsAvailable === 1 ? 'seat' : 'seats'} left
           </span>
           <span className="text-foreground font-medium">
-            ${experience.pricePerPerson}
+            ${experience.pricePerPerson} <span className="text-muted-foreground font-normal">/ person</span>
           </span>
         </div>
       </div>
