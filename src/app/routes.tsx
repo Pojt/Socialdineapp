@@ -1,4 +1,4 @@
-import { createBrowserRouter } from 'react-router';
+import { createHashRouter } from 'react-router';
 import { Home } from './pages/Home';
 import { ListingDetail } from './pages/ListingDetail';
 import { HostProfile } from './pages/HostProfile';
@@ -47,7 +47,7 @@ function Layout({ children, showHeader = true }: { children: React.ReactNode; sh
   );
 }
 
-export const router = createBrowserRouter([
+export const router = createHashRouter([
   {
     path: '/',
     element: <Layout showHeader={false}><Home /></Layout>,
